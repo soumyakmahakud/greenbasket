@@ -1,6 +1,5 @@
 import Order from "../models/Order.js";
 import Product from "../models/Product.js";
-import stripe from 'stripe';
 import Razorpay from 'razorpay';
 
 //Place Order COD : /api/order/cod
