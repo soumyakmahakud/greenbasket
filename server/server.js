@@ -21,7 +21,7 @@ await connectDB();
 await connectCLoudinary();
 
 // Allow multiple origins
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = ['http://localhost:5173', 'https://greenbasket-rouge.vercel.app']
 
 app.post('/razorpay', express.raw({type: 'application/json'}), razorpayWebhook)
 
