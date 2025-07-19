@@ -142,7 +142,9 @@ export const getUserOrder = async (req, res) => {
         const { userId } = req.query;
         const orders = await Order.find({
             userId,
-            $or: [{ paymentType: "COD" }, { isPaid: true }]
+            $or: [{ paymentType: "COD" },
+            { paymentType: "online" },
+            { isPaid: true }]
         }).populate("items.product address").sort({ createdAt: -1 })
 
         res.json({ success: true, orders })
