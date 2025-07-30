@@ -43,9 +43,14 @@ const AddAddress = () => {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
+        
+        if (!user || !user._id) {
+            toast.error("User not logged in or user ID is missing.");
+            return;
+        }
         try {
-            const { data } = await axios.post('/api/address/add', {address , userId: user._id} )
-            
+            const { data } = await axios.post('/api/address/add', { address, userId: user._id })
+
             if (data.success) {
                 navigate('/cart')
                 toast.success(data.message)
@@ -60,11 +65,15 @@ const AddAddress = () => {
     }
 
     useEffect(() => {
-        if (!user) {
-            navigate('/cart')
-        }
+    // Wait until user is fetched
+    if (user === null) return;
 
-    }, [])
+    // If user is not logged in
+    if (!user || !user._id) {
+        toast.error("You must be logged in to add address.");
+        navigate('/cart');
+    }
+}, [user]);
 
     return (
         <div className='mt-16 pb-16'>
