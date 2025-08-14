@@ -26,9 +26,9 @@ const allowedOrigins = ['http://localhost:5173', 'https://greenbasket-rouge.verc
 app.post('/razorpay', express.raw({type: 'application/json'}), razorpayWebhook)
 
 // Middleware configuration
+app.use(cors({origin: allowedOrigins, credentials:true}));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: allowedOrigins, credentials:true}));
 
 app.get('/', (req, res)=> res.send("API is working"));
 app.use('/api/user', userRouter)

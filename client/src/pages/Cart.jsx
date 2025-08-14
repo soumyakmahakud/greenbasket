@@ -103,7 +103,7 @@ const Cart = () => {
         try {
             if (!user || !user._id) {
                 console.error("User is not defined");
-                return toast.error("User not logged in");
+                return toast.error("Please select an address");
             }
             if (!selectedAddress) {
                 return toast.error("Please select an address")
